@@ -1,0 +1,680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+<style>
+
+div#searchForm {
+	margin: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: white;
+	display: block;
+	border-bottom: thin solid gray;
+	padding: 5px 0 0 0;
+	z-index: 10000;
+	height: 32px;
+	font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', Helvetica, 'Helvetica Neue', Arial, Roboto, 'Droid Sans', sans-serif;
+}
+
+div#searchForm *{
+	margin: 0;
+	padding: 0;
+}
+
+div#div1r {
+	position: fixed;
+	top: 38px;
+	left: 195px;
+	cursor: col-resize;
+	background: gray;
+	width: 4px;
+	height: 100px;
+	display: block;
+}
+div#div1 {
+	border: 0;
+	position: fixed;
+	top: 38px;
+	padding-top:5px;
+	left: 0;
+	background: white;
+	display: block;
+	clear: both;
+	z-index: 10000;
+	overflow: scroll;
+	width: 195px;
+}
+
+div#div2 {
+	margin-left: 195px;
+	margin-top: -70px;
+	margin-bottom: -80px;
+}
+
+div#targetDocs {
+	display: none;
+	top: 50px;
+	left: 400px;
+	position: fixed;
+	border: thin ridge silver;
+	background: InfoBackground;
+}
+div#targetDocs * {
+	margin: 0;
+	padding: 3px;
+}
+
+ul {
+	list-style: none;
+}
+
+table#SearchTbl {
+	border: thin solid silver;
+	font: xx-small;
+//	width: 170px;
+	max-width: 170px;
+	border: 1px solid #ababab;
+}
+
+
+table#SearchTbl th{
+	border: 1px solid #ababab;
+	background-color: #215e97;
+	color: #ffffff;
+}
+
+table#SearchTbl td{
+	border: 1px solid #ababab;
+	background-color: #f4faff;
+	padding: 2px;
+}
+
+a.toggles {
+	display: none;
+}
+
+a.togglec {
+	display: none;
+}
+
+.pdficon {
+	width: 15px;
+	height: 16px;
+	display: block;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAYAAADJViUEAAACQ0lEQVQ4T42T30uTURjHP+/cDyVnNXgzNNySRml4N5iY0W52kZAhRolGXQjC/h9vvehi3QSWOqW0EPuhsFIrs0hT9KaLnLkf7t3evXvPiXc2zTDswOEcDt/P+T7Pc56j8HtEow9keX/c2td3X7E0itB1KaUkNj5CayCIUmHnpMcDioLM5zF2tkGtxdKMjT2mo6OTiYlRrAuUdz5V1tSqmIUCBQS6riMMozRNFIQwSX9PEfywxNT7BXp67pJOp0sXKMs3Q7K58zpi8hUynaGYzSLsDsSPLYSeBy3Ht2QS9XWcl58/HcpIWWs6LxvPNcDUzD9TXQI8X79w4szZkiaRSBCPz6K8aKqXrnQGdjUUW6kOpfz2NkCFjXSywJW1daobvKWQ9+Gy3bNHD+WlxgvYnE7cp04jpUCJRtFbWijuJFFv3abC6Twatp7KKkZ5WKZiYACzvx9nMLh/fqTz37ClNnt7KYbDmPfuYWoabrf7/5y1+Xnsg4MIvx8tFMIeCKAUi+TzeXLZLLNvZtirEPCnsxWyHolQaG/HaGujZnqaTFUVhsdDpWmS8vmY/bhwGO7uvoOw2cjNzVE5NITp9WL6/RQNA7m5iXN5GelwIFSVp62Bw/CNi5cpbmzgGh4mFYlg8/lQ6+pIZDLIlRXQNPStLRyrq0x76w/g2PiovDYXR1lfZ7erCyMUKvW2u7qaZDKJEIKCYeB0udBzORYX3x7AE6NP5NXJ56TCYXLNzcd9rL0OK6tisRFZ6XBgSMnP7cSxsCX4BdM2N+y11zczAAAAAElFTkSuQmCC);
+}
+
+.othericon {
+	width: 13px;
+	height: 16px;
+	display: block;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAAd0lEQVQ4T2NcunThfwYiQXR0PCNIKSNIU1RUHF5ty5YtYvDy8mPYtm0TA0gjWBNIAB8AKQYZ/OHDB7BGsKbAwFCcen7+/AlWiAwIOg9kOgy8efOG4dSpY8T5CaQJpHlU08AGBKFkhDVyzcysiEznDIgUQbQOqEIA9hyf3cxUjNMAAAAASUVORK5CYII=);
+}
+
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container" id="searchForm">
+<form action="#">
+<p><label id="inputLabel" title="ラベルをクリックで貼り付け" >　厚生省コード／商品名・一般名：<input id="inputText"  size="40" /></label>
+<input id="start" type="button" value="検索" />
+　表示件数：<select id="ListRows">
+<option value=10>10件</option>
+<option value=20>20件</option>
+<option value=30>30件</option>
+<option value=50>50件</option>
+<option value=100>100件</option>
+</select>
+
+　<label>すぐ開く：<input type="checkbox" id="openCheckBox" title="1件目をすぐ開く" checked="checked" /></label>
+<input id = "selectDocument" type="button" value="表示文書選択" />
+　<label>アイコン表示：<input type="checkbox" id="compactCheckBox" title="アイコン表示" checked="checked" /></label>
+
+　<span style="position: absolute; right:0"><input type="button" value="＋" onclick="newApp()" /></span>
+</p>
+</form>
+</div>
+
+<!-- 検索結果表示 -->
+<div id="div1"></div>
+<div id="div1r"></div>
+
+<!-- HTML表示 -->
+<div id="div2"></div>
+
+<!-- 表示文書選択 -->
+<div id="targetDocs">
+検索結果一覧で表示する文書を選ぶ
+<ul class="SearchList02">
+  
+    <li><label><input type="checkbox" name="dispColumnsList[0]" value="1" checked="checked"><span>添付文書</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[1]" value="2"><span>患者向医薬品ガイド／ワクチン接種を受ける人へのガイド</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[2]" value="3" checked="checked"><span>インタビューフォーム</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[3]" value="23"><span>医薬品リスク管理計画（RMP）</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[4]" value="4"><span>改訂指示反映履歴および根拠症例</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[5]" value="11"><span>審査報告書／再審査報告書／最適使用推進ガイドライン等</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[6]" value="5"><span>重篤副作用疾患別対応マニュアル</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[7]" value="10"><span>くすりのしおり</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[8]" value="13"><span>緊急安全性情報／安全性速報</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[9]" value="15"><span>医薬品の適正使用等に関するお知らせ</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[10]" value="17"><span>厚生労働省発表資料（医薬品関連）</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[11]" value="8"><span>医薬品に関する評価中のリスク等の情報</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[12]" value="18"><span>医薬品添付文書改訂相談に基づく添付文書改訂</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[13]" value="19"><span>DSU（医薬品安全対策情報）</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[14]" value="22"><span>PMDA医療安全情報</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[15]" value="9"><span>医療用医薬品問合せ先</span></label></li>
+  
+</ul>
+</div>
+
+<script type="text/javascript">
+(function(){
+	
+	var lastup = new Date(document.lastModified);
+	var year = lastup.getFullYear(); // 年
+	var month = ("0"+(lastup.getMonth() + 1)).slice(-2); // 月
+	var day = ("0"+lastup.getDate()).slice(-2); // 日
+	
+	document.title = "PMDA 医療用医薬品検索 " + year + '/' + month + '/' + day + '版'
+	
+	window.resizeTo (1165,865);
+	
+//	document.getElementById("div1").style.height = '720px';
+
+var BASE_URL = 'https://www.pmda.go.jp/';
+
+var startButton, outputText,inputText,inputLabel,responseDiv,responseDiv,htmlDiv,selectDocumentButton, targetDocs, openCheckBox,ListRows, isResize, startPos, div1r, compactCheckBox;
+
+var loadScript = function() {
+	startButton = document.getElementById('start');
+	outputText = document.getElementById('outputText');
+	inputText = document.getElementById('inputText');
+	inputLabel = document.getElementById('inputLabel');
+	responseDiv = document.getElementById('div1');
+	htmlDiv = document.getElementById('div2');
+	targetDocs = document.getElementById('targetDocs')
+	selectDocumentButton = document.getElementById('selectDocument');
+	
+	div1r = document.getElementById('div1r');
+	
+	openCheckBox = document.getElementById('openCheckBox')
+	compactCheckBox = document.getElementById('compactCheckBox')
+	
+	ListRows = document.getElementById('ListRows')
+	
+	inputText.onkeydown = inputTextOnKeyDown;
+	
+	inputLabel.onmousedown = inputLabelOnMouseDown;
+	
+	startButton.onclick = searchStart;
+		
+	window.addEventListener('mousedown', targetDocsButtonClicked, false);
+	window.addEventListener('mouseup', mouseUp, false);
+	window.addEventListener('selectstart', selectStart, false);
+
+}
+
+//検索ボタンクリック時
+var searchStart = function () {
+	//後方の空白を削除
+	inputText.value = inputText.value.trim();
+
+	if(inputText.value == "") {
+		inputText.value = window.clipboardData.getData("text");
+		getSearchResults(inputText.value);
+	} else {
+		getSearchResults(inputText.value);
+	}
+}
+
+
+var isYJCode = function (param) {
+	var isYJ = true;
+	
+	//英数字以外が含まれる
+	var re = new RegExp(/[0-9]|[A-Z]/g);
+	if (param.replace(re,"").length > 0) {
+//		alert("英数字以外が含まれる");
+		isYJ = false
+	}
+	
+	//2文字より多くの英字が含まれる
+	re = new RegExp(/[A-Z]/g);
+	if (param.length - param.replace(re, "").length > 2) {
+//		alert("2文字より多くの英字が含まれる");
+		isYJ = false
+	}
+
+	//一文字目が数字ではない
+	re = new RegExp(/[^\d]/);
+	if (param.substring(1,1).match(re)) {
+//		alert("一文字目が数字ではない");
+		isYJ = false
+	}
+	
+	return isYJ;
+}
+
+
+var inputTextOnKeyDown = function() {
+	
+	if(event.keyCode == 13) {
+		
+		searchStart();
+		
+		(event.preventDefault) ? event.preventDefault():event.returnValue=false;
+	}
+	
+	if(event.keyCode == 27) {
+		inputText.value = "";
+	}
+}
+
+
+var inputLabelOnMouseDown = function() {
+	
+	if(event.srcElement.tagName == "LABEL") {
+		event.srcElement.childNodes[1].value = window.clipboardData.getData("text");
+	}
+	
+}
+
+
+/* HTMLへのリンクをクリックした時のイベント上書き */
+detailDisp = function ( service, fname ) {
+
+	var url = BASE_URL + service + "/iyakuDetail/" + fname;
+	
+	getHTML(url);
+	
+	//イベントをキャンセル
+	(event.preventDefault) ? event.preventDefault():event.returnValue=false;
+
+}
+
+var getSearchResults = function(param) {
+	
+	var cnt = 0;
+	var Request1 = new XMLHttpRequest();
+	Request1.onreadystatechange = function()
+	{
+		var READYSTATE_COMPLETED = 4;
+		var HTTP_STATUS_OK = 200;
+
+		if( Request1.readyState == READYSTATE_COMPLETED
+		&& Request1.status == HTTP_STATUS_OK )
+		{	
+			//取得データ処理用dom
+			var dom = document.createElement("dom");
+			
+			//表示用dom
+			var dom2 = document.createElement("dom");
+			
+			var tmp = Request1.responseText;
+			
+			tmp = tmp.replace(/\.\.\u002f/g,"/PmdaSearch/");
+			
+			tmp = tmp.replace(/src="\u002f/g, "src=\"" + BASE_URL);
+			tmp = tmp.replace(/src='\u002f/g, "src=\'" + BASE_URL);
+			
+			tmp = tmp.replace(/href="\u002f/g, "href=\"" + BASE_URL);
+			tmp = tmp.replace(/href='\u002f/g, "href=\'" + BASE_URL);
+			
+			tmp = tmp.replace(/display: none/g, "display: inline");
+			tmp = tmp.replace(/display:none/g, "display: inline");
+			
+			tmp = tmp.replace(/onMouseOver='javascript:tooltip\(event, "([^"]+)"\);[^\/]+/gi,">$1<");//'
+			
+			dom.innerHTML = new String(tmp);
+			
+//			window.clipboardData.setData('text', tmp);
+//			window.clipboardData.setData('text', dom.innerHTML);
+			
+			if(dom.getElementsByTagName('tbody')[0].getElementsByTagName('a')[0] === undefined){ /* 添付文書のリンクが見つからない場合 */
+			
+				responseDiv.innerHTML = inputText.value + "：<br>　検索結果 0 件";
+				
+				htmlDiv.innerHTML = '';
+				
+			} else {
+				
+				dom = dom.getElementsByTagName('tbody')[0];
+				
+				dom2.appendChild(document.createElement("tbody"));
+				dom2.firstChild.appendChild(document.createElement("tr"));
+				
+				//ヘッダ1行目追加
+				var thElem = document.createElement("th");
+				var targetDocsParam = getTargetDocsParam();
+				thElem.colSpan = counter(targetDocsParam,"dispColumnsList");
+				thElem.innerHTML = "販売名";
+				dom2.firstChild.lastChild.appendChild(thElem);
+				
+				//ヘッダ2行目追加
+				dom2.firstChild.appendChild(document.createElement("tr"));
+				
+				if(targetDocsParam.match(/dispColumnsList%5B0%5D=1/)) {thElem = document.createElement("th");thElem.innerHTML = "添";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B1%5D=2/)) {thElem = document.createElement("th");thElem.innerHTML = "Ｇ";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B2%5D=3/)) {thElem = document.createElement("th");thElem.innerHTML = "IF";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B3%5D=23/)) {thElem = document.createElement("th");thElem.innerHTML = "RMP";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B4%5D=4/)) {thElem = document.createElement("th");thElem.innerHTML = "改指";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B5%5D=11/)) {thElem = document.createElement("th");thElem.innerHTML = "審報等";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B6%5D=5/)) {thElem = document.createElement("th");thElem.innerHTML = "重マ";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B7%5D=10/)) {thElem = document.createElement("th");thElem.innerHTML = "しお";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B8%5D=13/)) {thElem = document.createElement("th");thElem.innerHTML = "緊安／安速";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B9%5D=15/)) {thElem = document.createElement("th");thElem.innerHTML = "適正";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B10%5D=17/)) {thElem = document.createElement("th");thElem.innerHTML = "発資";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B11%5D=8/)) {thElem = document.createElement("th");thElem.innerHTML = "評リ";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B12%5D=18/)) {thElem = document.createElement("th");thElem.innerHTML = "相談改訂";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B13%5D=19/)) {thElem = document.createElement("th");thElem.innerHTML = "DSU";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B14%5D=22/)) {thElem = document.createElement("th");thElem.innerHTML = "医安";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B15%5D=9/)) {thElem = document.createElement("th");thElem.innerHTML = "問いあわせ先";dom2.firstChild.lastChild.appendChild(thElem);}
+				
+				var resultRows;
+				
+				for(var i=1; i<dom.getElementsByTagName('tr').length;i++) {
+					cnt = cnt + 1;
+					
+					//HTMLへのリンク用の行追加
+					dom2.firstChild.appendChild(document.createElement("tr"));
+					resultRows = dom.getElementsByTagName('tr')[i].childNodes;
+					
+					/*
+					for (var j = 0 ;j<resultRows.length;j++) {
+						alert(j + resultRows[j].innerHTML);
+					}
+					*/
+					
+					/*
+					resultRows[1]： 一般名
+					resultRows[2]： 販売名
+					resultRows[3]： 製造販売業者等
+					resultRows[4]： 添付文書
+					resultRows[5]： インタビューフォーム
+					*/
+					
+					for (var j = 0 ;j<resultRows[4].getElementsByTagName('a').length;j++) {
+						if(resultRows[4].getElementsByTagName('a')[j].innerHTML == "HTML") {
+							var tdElem = document.createElement("td");
+							tdElem.appendChild(resultRows[4].getElementsByTagName('a')[j].cloneNode(true));
+							tdElem.lastChild.title = resultRows[2].childNodes[0].innerHTML;
+							if(resultRows[2].innerHTML.length > 23) {
+								tdElem.lastChild.innerHTML = resultRows[2].innerHTML.substring(0,23) + "...";
+							} else {
+								tdElem.lastChild.innerHTML = resultRows[2].innerHTML;
+							}
+							dom2.firstChild.lastChild.appendChild(tdElem);
+							dom2.firstChild.lastChild.childNodes[0].colSpan =counter(targetDocsParam,"dispColumnsList");
+						}
+					}
+					
+					//HTML以外へのリンク用の行追加
+					dom2.firstChild.appendChild(document.createElement("tr"));
+					
+					var tdElem = document.createElement("td");
+					for (j = 0; j<resultRows[4].getElementsByTagName('a').length;j++) {
+						if(resultRows[4].getElementsByTagName('a')[j].innerHTML.match(/PDF/)) {
+							tdElem.appendChild(resultRows[4].getElementsByTagName('a')[j].cloneNode(true));
+							tdElem.lastChild.innerHTML = "<span title='添付文書PDFを開く' class='pdficon' />";
+							
+							dom2.firstChild.lastChild.appendChild(tdElem);
+						}
+					}
+					
+					if(targetDocsParam.match(/dispColumnsList%5B1%5D=2/)) {//患者向け医薬品ガイドにチェック
+						dom2.firstChild.lastChild.appendChild(resultRows[5].cloneNode(true));
+						dom2.firstChild.lastChild.lastChild.innerHTML = dom2.firstChild.lastChild.lastChild.innerHTML.replace(/>[^<]+</g, "><span title='患者向け医薬品ガイドを開く' class='pdficon' /><").replace("<BR>","");
+					}
+					
+					//インタビューフォームのリンク取得
+					if(targetDocsParam.match(/dispColumnsList%5B1%5D=2/)) {//患者向け医薬品ガイドにチェックしているとずれる
+						dom2.firstChild.lastChild.appendChild(resultRows[6].cloneNode(true));
+						dom2.firstChild.lastChild.lastChild.innerHTML = dom2.firstChild.lastChild.lastChild.innerHTML.replace(/>[^<]+</g, "><span title='インタビューフォームを開く' class='pdficon' /><").replace("<BR>","");
+					} else {
+						dom2.firstChild.lastChild.appendChild(resultRows[5].cloneNode(true));
+						dom2.firstChild.lastChild.lastChild.innerHTML = dom2.firstChild.lastChild.lastChild.innerHTML.replace(/>[^<]+</g, "><span title='インタビューフォームを開く' class='pdficon' /><").replace("<BR>","");
+					}
+					
+					//その他文書のリンク
+					for (j = 6; j<resultRows.length;j++) {
+						if(targetDocsParam.match(/dispColumnsList%5B1%5D=2/) && j == 6 ) {
+							continue;
+						}
+						dom2.firstChild.lastChild.appendChild(resultRows[j].cloneNode(true));
+						var tmp = dom2.firstChild.lastChild.lastChild
+						
+						for(var k=0; k<tmp.getElementsByTagName('a').length;k++) {
+							tmp.getElementsByTagName('a')[k].title = tmp.getElementsByTagName('a')[k].innerHTML;
+							
+							if(compactCheckBox.checked) {
+								tmp.getElementsByTagName('a')[k].innerHTML = "<span class='othericon' />";
+							}
+						
+						}
+					}
+				}
+				
+				responseDiv.innerHTML = "　検索結果 " + cnt + " 件<br><table id='SearchTbl'>" + dom2.innerHTML + "</table>";
+				
+				for(var i=0; i<responseDiv.getElementsByTagName('a').length;i++) {
+				
+					if (responseDiv.getElementsByTagName('a')[i].href.match(/javascript/)) {
+					} else if (responseDiv.getElementsByTagName('a')[i].href.match(/#/)) {
+					} else if (responseDiv.getElementsByTagName('a')[i].href == "") {
+					} else if ('href' in responseDiv.getElementsByTagName('a')[i]) {
+					
+						(function(i){
+							responseDiv.getElementsByTagName('a')[i].onclick = function (e) {
+							execURL(responseDiv.getElementsByTagName('a')[i].href);
+							(e.preventDefault) ? e.preventDefault():e.returnValue=false;
+							return false;
+							};
+						}(i));
+						
+					}
+				}
+				
+				//「すぐ開く」にチェックが入っている場合は最初のリンクを開く
+				if(openCheckBox.checked) {
+					responseDiv.getElementsByTagName('a')[0].click();
+				}
+				mouseUp();
+//				window.clipboardData.setData('text', responseDiv.innerHTML);
+			}
+			
+		}
+	}
+
+	Request1.open('POST', BASE_URL+ 'PmdaSearch/iyakuSearch/', false);
+
+	// サーバに対して解析方法を指定する
+	Request1.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded');
+	
+	if (isYJCode(param)) {
+		// データをリクエスト ボディに含めて送信する
+		Request1.send('ListRows=' + document.getElementById("ListRows").value + '&nameWord=&iyakuHowtoNameSearchRadioValue=1&howtoMatchRadioValue=1&tglOpFlg=&dispColumnsList%5B0%5D=1&dispColumnsList%5B2%5D=3&effectValue=&infoindicationsorefficacy=&infoindicationsorefficacyHowtoSearch=and&warnings=&warningsHowtoSearch=and&contraindicationsAvoidedadministration=&contraindicationsAvoidedadministrationHowtoSearch=and&contraindicatedcombinationPrecautionsforcombination=&contraindicatedcombinationPrecautionsforcombinationHowtoSearch=and&updateDocFrDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&updateDocToDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&compNameWord=&koumoku1Value=allsearch&koumoku1Word=' + param + '&koumoku1HowtoSearch=and&koumoku2Value=&koumoku2Word=&koumoku2HowtoSearch=and&koumoku3Value=&koumoku3Word=&koumoku3HowtoSearch=and ' + getTargetDocsParam() + '&howtoRdSearchSel=or&relationDoc1Sel=&relationDoc1check1=on&relationDoc1check2=on&relationDoc1Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc1HowtoSearch=and&relationDoc1FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc1ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween12=and&relationDoc2Sel=&relationDoc2check1=on&relationDoc2check2=on&relationDoc2Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc2HowtoSearch=and&relationDoc2FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc2ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween23=and&relationDoc3Sel=&relationDoc3check1=on&relationDoc3check2=on&relationDoc3Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc3HowtoSearch=and&relationDoc3FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc3ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&btnA.x=68&btnA.y=23&btnA=%E6%A4%9C%E7%B4%A2&listCategory=');
+	} else {
+		Request1.send('ListRows=' + document.getElementById("ListRows").value + '&nameWord=' + encodeURI(param) + '&iyakuHowtoNameSearchRadioValue=1&howtoMatchRadioValue=1&tglOpFlg=&dispColumnsList%5B0%5D=1&dispColumnsList%5B2%5D=3&effectValue=&infoindicationsorefficacy=&infoindicationsorefficacyHowtoSearch=and&warnings=&warningsHowtoSearch=and&contraindicationsAvoidedadministration=&contraindicationsAvoidedadministrationHowtoSearch=and&contraindicatedcombinationPrecautionsforcombination=&contraindicatedcombinationPrecautionsforcombinationHowtoSearch=and&updateDocFrDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&updateDocToDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&compNameWord=&koumoku1Value=&koumoku1Word=&koumoku1HowtoSearch=and&koumoku2Value=&koumoku2Word=&koumoku2HowtoSearch=and&koumoku3Value=&koumoku3Word=&koumoku3HowtoSearch=and ' + getTargetDocsParam() + '&howtoRdSearchSel=or&relationDoc1Sel=&relationDoc1check1=on&relationDoc1check2=on&relationDoc1Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc1HowtoSearch=and&relationDoc1FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc1ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween12=and&relationDoc2Sel=&relationDoc2check1=on&relationDoc2check2=on&relationDoc2Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc2HowtoSearch=and&relationDoc2FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc2ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween23=and&relationDoc3Sel=&relationDoc3check1=on&relationDoc3check2=on&relationDoc3Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc3HowtoSearch=and&relationDoc3FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc3ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&btnA.x=82&btnA.y=18&btnA=%E6%A4%9C%E7%B4%A2&listCategory=');
+	}
+}
+
+var getHTML = function(param) {
+
+	var Request2 = new XMLHttpRequest();
+	Request2.onreadystatechange = function()
+	{
+		var READYSTATE_COMPLETED = 4;
+		var HTTP_STATUS_OK = 200;
+
+		if(Request2.readyState == READYSTATE_COMPLETED
+		&& Request2.status == HTTP_STATUS_OK)
+		{
+			var tmp = Request2.responseText;
+			
+			tmp = tmp.replace(/\.\.\u002f/g,"/PmdaSearch/");
+			
+			tmp = tmp.replace(/src="\u002f/g, "src=\"" + BASE_URL);
+			tmp = tmp.replace(/src='\u002f/g, "src=\'" + BASE_URL);
+			
+			tmp = tmp.replace(/href="\u002f/g, "href=\"" + BASE_URL);
+			tmp = tmp.replace(/href='\u002f/g, "href=\'" + BASE_URL);
+			
+			tmp = tmp.replace(/<head>/, "<head><base href=\"" + param + "\">");
+			
+			htmlDiv.innerHTML = new String(tmp);
+			
+		} else {
+			htmlDiv.innerHTML = ''
+		}
+	}
+
+	Request2.open('GET', param);
+	Request2.send(null);
+}
+
+window.addEventListener('load', loadScript, false);
+
+
+function debounce(func){
+	var timer;
+	return function(event){
+		if(timer) clearTimeout(timer);
+		timer = setTimeout(func,300,event);
+	};
+}
+
+
+window.addEventListener("resize",debounce(function(e){
+	document.getElementById("div1").style.height = (document.documentElement.clientHeight - 50) + 'px';
+	document.getElementById("div1r").style.height = (document.documentElement.clientHeight - 50) + 'px';
+	document.getElementById("div2").style.height = (document.documentElement.clientHeight - 50) + 'px';
+	
+}));
+
+
+
+var execURL = function(appPath) {
+	if(appPath == "") {
+		return;
+	}
+	var obj = new ActiveXObject("WScript.Shell");
+	obj.Run(appPath);
+}
+
+var selectStart = function () {
+	if(isResize) {
+		window.getSelection().removeAllRanges();
+		return false;
+	}
+}
+
+var mouseUp = function (event) {
+	if(isResize) {
+		responseDiv.style.width = (event.pageX - 2) + "px";
+		div1r.style.left = (event.pageX - 2) + "px";
+		htmlDiv.style.marginLeft= (event.pageX - 2) + "px";
+		
+		var SearchTbl = document.getElementById('SearchTbl');
+		
+		if(SearchTbl) {
+			SearchTbl.style.maxWidth = (event.pageX - 25) + "px";
+		}
+		
+		window.resizeTo (window.outerWidth - startPos + event.pageX, window.outerHeight);
+	
+		isResize = false;
+	} else {
+		
+		if(responseDiv) {
+			var SearchTbl = document.getElementById('SearchTbl');
+			if(SearchTbl) {
+				SearchTbl.style.maxWidth = "300px";
+			}
+		}
+	}
+}
+
+var targetDocsButtonClicked = function (event) {
+	
+	if(event.srcElement.id == 'selectDocument' && selectDocumentButton.value == "表示文書選択") {
+		targetDocs.style.display = "block";
+		selectDocumentButton.value = "表示文書隠す";
+	} else if (targetDocs.contains(event.srcElement)) {
+	} else {
+		targetDocs.style.display = "none";
+		selectDocumentButton.value = "表示文書選択";
+	}
+	
+	if(event.srcElement.id == 'div1r') {
+		isResize = true;
+		startPos = event.pageX;
+	}
+	
+}
+
+
+var getTargetDocsParam = function () {
+	
+	targetDocsParam = "";
+	
+	for(var i=0; i<targetDocs.getElementsByTagName('input').length;i++) {
+		var tmp = targetDocs.getElementsByTagName('input')[i];
+		if (tmp.checked == 1) {
+			targetDocsParam = targetDocsParam + "&" + tmp.name + "=" + tmp.value;
+		}
+	}
+	targetDocsParam = targetDocsParam.replace(/^\s+|\s+$/g,'');
+	targetDocsParam = targetDocsParam.replace(/\[/g,'%5B');
+	targetDocsParam = targetDocsParam.replace(/\]/g,'%5D');
+	
+	return targetDocsParam;
+}
+
+
+var counter = function(str,seq){
+	return str.split(seq).length - 1;
+}
+
+
+newApp = function() {
+	var obj = new ActiveXObject("WScript.Shell");
+	obj.Run(location.href);
+	
+}
+
+
+tooltip = function() {}
+tooltipClose = function() {}
+
+}())
+
+</script>
+
+</body></html>
+
