@@ -63,7 +63,7 @@ div#targetDocs {
 	left: 400px;
 	position: fixed;
 	border: thin ridge silver;
-	background: InfoBackground;
+	background: #d0f0f0;
 }
 div#targetDocs * {
 	margin: 0;
@@ -117,8 +117,6 @@ a.togglec {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAAd0lEQVQ4T2NcunThfwYiQXR0PCNIKSNIU1RUHF5ty5YtYvDy8mPYtm0TA0gjWBNIAB8AKQYZ/OHDB7BGsKbAwFCcen7+/AlWiAwIOg9kOgy8efOG4dSpY8T5CaQJpHlU08AGBKFkhDVyzcysiEznDIgUQbQOqEIA9hyf3cxUjNMAAAAASUVORK5CYII=);
 }
 
-
-
 </style>
 
 </head>
@@ -166,29 +164,31 @@ a.togglec {
   
     <li><label><input type="checkbox" name="dispColumnsList[3]" value="23"><span>医薬品リスク管理計画（RMP）</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[4]" value="4"><span>改訂指示反映履歴および根拠症例</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[4]" value="25"><span>RMP資材</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[5]" value="11"><span>審査報告書／再審査報告書／最適使用推進ガイドライン等</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[7]" value="4"><span>改訂指示反映履歴および根拠症例</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[6]" value="5"><span>重篤副作用疾患別対応マニュアル</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[8]" value="11"><span>審査報告書／再審査報告書／最適使用推進ガイドライン等</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[7]" value="10"><span>くすりのしおり</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[9]" value="5"><span>重篤副作用疾患別対応マニュアル</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[8]" value="13"><span>緊急安全性情報／安全性速報</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[10]" value="10"><span>くすりのしおり</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[9]" value="15"><span>医薬品の適正使用等に関するお知らせ</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[11]" value="13"><span>緊急安全性情報／安全性速報</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[10]" value="17"><span>厚生労働省発表資料（医薬品関連）</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[12]" value="15"><span>医薬品の適正使用等に関するお知らせ</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[11]" value="8"><span>医薬品に関する評価中のリスク等の情報</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[13]" value="17"><span>厚生労働省発表資料（医薬品関連）</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[12]" value="18"><span>医薬品添付文書改訂相談に基づく添付文書改訂</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[14]" value="8"><span>医薬品に関する評価中のリスク等の情報</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[13]" value="19"><span>DSU（医薬品安全対策情報）</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[15]" value="18"><span>医薬品添付文書改訂相談に基づく添付文書改訂</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[14]" value="22"><span>PMDA医療安全情報</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[16]" value="19"><span>DSU（医薬品安全対策情報）</span></label></li>
   
-    <li><label><input type="checkbox" name="dispColumnsList[15]" value="9"><span>医療用医薬品問合せ先</span></label></li>
+    <li><label><input type="checkbox" name="dispColumnsList[17]" value="22"><span>PMDA医療安全情報</span></label></li>
+  
+    <li><label><input type="checkbox" name="dispColumnsList[18]" value="9"><span>医療用医薬品問合せ先</span></label></li>
   
 </ul>
 </div>
@@ -204,8 +204,6 @@ a.togglec {
 	document.title = "PMDA 医療用医薬品検索 " + year + '/' + month + '/' + day + '版'
 	
 	window.resizeTo (1165,865);
-	
-//	document.getElementById("div1").style.height = '720px';
 
 var BASE_URL = 'https://www.pmda.go.jp/';
 
@@ -383,24 +381,27 @@ var getSearchResults = function(param) {
 				if(targetDocsParam.match(/dispColumnsList%5B1%5D=2/)) {thElem = document.createElement("th");thElem.innerHTML = "Ｇ";dom2.firstChild.lastChild.appendChild(thElem);}
 				if(targetDocsParam.match(/dispColumnsList%5B2%5D=3/)) {thElem = document.createElement("th");thElem.innerHTML = "IF";dom2.firstChild.lastChild.appendChild(thElem);}
 				if(targetDocsParam.match(/dispColumnsList%5B3%5D=23/)) {thElem = document.createElement("th");thElem.innerHTML = "RMP";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B4%5D=4/)) {thElem = document.createElement("th");thElem.innerHTML = "改指";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B5%5D=11/)) {thElem = document.createElement("th");thElem.innerHTML = "審報等";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B6%5D=5/)) {thElem = document.createElement("th");thElem.innerHTML = "重マ";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B7%5D=10/)) {thElem = document.createElement("th");thElem.innerHTML = "しお";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B8%5D=13/)) {thElem = document.createElement("th");thElem.innerHTML = "緊安／安速";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B9%5D=15/)) {thElem = document.createElement("th");thElem.innerHTML = "適正";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B10%5D=17/)) {thElem = document.createElement("th");thElem.innerHTML = "発資";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B11%5D=8/)) {thElem = document.createElement("th");thElem.innerHTML = "評リ";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B12%5D=18/)) {thElem = document.createElement("th");thElem.innerHTML = "相談改訂";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B13%5D=19/)) {thElem = document.createElement("th");thElem.innerHTML = "DSU";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B14%5D=22/)) {thElem = document.createElement("th");thElem.innerHTML = "医安";dom2.firstChild.lastChild.appendChild(thElem);}
-				if(targetDocsParam.match(/dispColumnsList%5B15%5D=9/)) {thElem = document.createElement("th");thElem.innerHTML = "問いあわせ先";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B4%5D=25/)) {thElem = document.createElement("th");thElem.innerHTML = "RMP資";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B7%5D=4/)) {thElem = document.createElement("th");thElem.innerHTML = "改指";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B8%5D=11/)) {thElem = document.createElement("th");thElem.innerHTML = "審報等";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B9%5D=5/)) {thElem = document.createElement("th");thElem.innerHTML = "重マ";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B10%5D=10/)) {thElem = document.createElement("th");thElem.innerHTML = "しお";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B11%5D=13/)) {thElem = document.createElement("th");thElem.innerHTML = "緊安／安速";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B12%5D=15/)) {thElem = document.createElement("th");thElem.innerHTML = "適正";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B13%5D=17/)) {thElem = document.createElement("th");thElem.innerHTML = "発資";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B14%5D=8/)) {thElem = document.createElement("th");thElem.innerHTML = "評リ";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B15%5D=18/)) {thElem = document.createElement("th");thElem.innerHTML = "相談改訂";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B16%5D=19/)) {thElem = document.createElement("th");thElem.innerHTML = "DSU";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B17%5D=22/)) {thElem = document.createElement("th");thElem.innerHTML = "医安";dom2.firstChild.lastChild.appendChild(thElem);}
+				if(targetDocsParam.match(/dispColumnsList%5B18%5D=9/)) {thElem = document.createElement("th");thElem.innerHTML = "問いあわせ先";dom2.firstChild.lastChild.appendChild(thElem);}
 				
 				var resultRows;
 				
-				for(var i=1; i<dom.getElementsByTagName('tr').length;i++) {
+				for(var i=0; i<dom.getElementsByTagName('tr').length;i++) {
 					cnt = cnt + 1;
-					
+					if(dom.getElementsByTagName('tr')[i].getElementsByTagName('a').length == 0) {
+						continue;
+ 					}
 					//HTMLへのリンク用の行追加
 					dom2.firstChild.appendChild(document.createElement("tr"));
 					resultRows = dom.getElementsByTagName('tr')[i].childNodes;
@@ -518,9 +519,9 @@ var getSearchResults = function(param) {
 	
 	if (isYJCode(param)) {
 		// データをリクエスト ボディに含めて送信する
-		Request1.send('ListRows=' + document.getElementById("ListRows").value + '&nameWord=&iyakuHowtoNameSearchRadioValue=1&howtoMatchRadioValue=1&tglOpFlg=&dispColumnsList%5B0%5D=1&dispColumnsList%5B2%5D=3&effectValue=&infoindicationsorefficacy=&infoindicationsorefficacyHowtoSearch=and&warnings=&warningsHowtoSearch=and&contraindicationsAvoidedadministration=&contraindicationsAvoidedadministrationHowtoSearch=and&contraindicatedcombinationPrecautionsforcombination=&contraindicatedcombinationPrecautionsforcombinationHowtoSearch=and&updateDocFrDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&updateDocToDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&compNameWord=&koumoku1Value=allsearch&koumoku1Word=' + param + '&koumoku1HowtoSearch=and&koumoku2Value=&koumoku2Word=&koumoku2HowtoSearch=and&koumoku3Value=&koumoku3Word=&koumoku3HowtoSearch=and ' + getTargetDocsParam() + '&howtoRdSearchSel=or&relationDoc1Sel=&relationDoc1check1=on&relationDoc1check2=on&relationDoc1Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc1HowtoSearch=and&relationDoc1FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc1ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween12=and&relationDoc2Sel=&relationDoc2check1=on&relationDoc2check2=on&relationDoc2Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc2HowtoSearch=and&relationDoc2FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc2ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween23=and&relationDoc3Sel=&relationDoc3check1=on&relationDoc3check2=on&relationDoc3Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc3HowtoSearch=and&relationDoc3FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc3ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&btnA.x=68&btnA.y=23&btnA=%E6%A4%9C%E7%B4%A2&listCategory=');
+		Request1.send('nccharset=6EE062BA&ListRows=' + document.getElementById("ListRows").value + '&nameWord=&iyakuHowtoNameSearchRadioValue=1&howtoMatchRadioValue=1&tglOpFlg=&dispColumnsList%5B0%5D=1&_dispColumnsList%5B0%5D=on&dispColumnsList%5B1%5D=2&_dispColumnsList%5B1%5D=on&dispColumnsList%5B2%5D=3&_dispColumnsList%5B2%5D=on&dispColumnsList%5B3%5D=23&_dispColumnsList%5B3%5D=on&dispColumnsList%5B4%5D=25&_dispColumnsList%5B4%5D=on&dispColumnsList%5B7%5D=4&_dispColumnsList%5B7%5D=on&dispColumnsList%5B8%5D=11&_dispColumnsList%5B8%5D=on&_dispColumnsList%5B9%5D=on&_dispColumnsList%5B10%5D=on&_dispColumnsList%5B11%5D=on&_dispColumnsList%5B12%5D=on&_dispColumnsList%5B13%5D=on&_dispColumnsList%5B14%5D=on&_dispColumnsList%5B15%5D=on&_dispColumnsList%5B16%5D=on&_dispColumnsList%5B17%5D=on&_dispColumnsList%5B18%5D=on&effectValue=&infoindicationsorefficacy=&infoindicationsorefficacyHowtoSearch=and&warnings=&warningsHowtoSearch=and&contraindicationsAvoidedadministration=&contraindicationsAvoidedadministrationHowtoSearch=and&contraindicatedcombinationPrecautionsforcombination=&contraindicatedcombinationPrecautionsforcombinationHowtoSearch=and&updateDocFrDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&updateDocToDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&compNameWord=&iyakuKoumokuSelectSwitchRadio=2&isNewReleaseDisp=true&koumoku1Value=allsearch&koumoku1Word=' + param + '&koumoku1HowtoSearch=and&koumoku2Value=&koumoku2Word=&koumoku2HowtoSearch=and&koumoku3Value=&koumoku3Word=&koumoku3HowtoSearch=and ' + getTargetDocsParam() + '&gs1code=&howtoRdSearchSel=or&relationDoc1Sel=&relationDoc1check1=on&_relationDoc1check1=on&relationDoc1check2=on&_relationDoc1check2=on&relationDoc1Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc1HowtoSearch=and&relationDoc1FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc1ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween12=and&relationDoc2Sel=&relationDoc2check1=on&_relationDoc2check1=on&relationDoc2check2=on&_relationDoc2check2=on&relationDoc2Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc2HowtoSearch=and&relationDoc2FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc2ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween23=and&relationDoc3Sel=&relationDoc3check1=on&_relationDoc3check1=on&relationDoc3check2=on&_relationDoc3check2=on&relationDoc3Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc3HowtoSearch=and&relationDoc3FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc3ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&ListRows=' + document.getElementById("ListRows").value + '&btnA.x=44&btnA.y=16&listCategory=');
 	} else {
-		Request1.send('ListRows=' + document.getElementById("ListRows").value + '&nameWord=' + encodeURI(param) + '&iyakuHowtoNameSearchRadioValue=1&howtoMatchRadioValue=1&tglOpFlg=&dispColumnsList%5B0%5D=1&dispColumnsList%5B2%5D=3&effectValue=&infoindicationsorefficacy=&infoindicationsorefficacyHowtoSearch=and&warnings=&warningsHowtoSearch=and&contraindicationsAvoidedadministration=&contraindicationsAvoidedadministrationHowtoSearch=and&contraindicatedcombinationPrecautionsforcombination=&contraindicatedcombinationPrecautionsforcombinationHowtoSearch=and&updateDocFrDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&updateDocToDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&compNameWord=&koumoku1Value=&koumoku1Word=&koumoku1HowtoSearch=and&koumoku2Value=&koumoku2Word=&koumoku2HowtoSearch=and&koumoku3Value=&koumoku3Word=&koumoku3HowtoSearch=and ' + getTargetDocsParam() + '&howtoRdSearchSel=or&relationDoc1Sel=&relationDoc1check1=on&relationDoc1check2=on&relationDoc1Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc1HowtoSearch=and&relationDoc1FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc1ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween12=and&relationDoc2Sel=&relationDoc2check1=on&relationDoc2check2=on&relationDoc2Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc2HowtoSearch=and&relationDoc2FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc2ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween23=and&relationDoc3Sel=&relationDoc3check1=on&relationDoc3check2=on&relationDoc3Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc3HowtoSearch=and&relationDoc3FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc3ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&btnA.x=82&btnA.y=18&btnA=%E6%A4%9C%E7%B4%A2&listCategory=');
+		Request1.send('nccharset=EDDAA360&ListRows=' + document.getElementById("ListRows").value + '&nameWord=' + encodeURI(param) + '&iyakuHowtoNameSearchRadioValue=1&howtoMatchRadioValue=1&tglOpFlg=&dispColumnsList%5B0%5D=1&_dispColumnsList%5B0%5D=on&_dispColumnsList%5B1%5D=on&dispColumnsList%5B2%5D=3&_dispColumnsList%5B2%5D=on&_dispColumnsList%5B3%5D=on&_dispColumnsList%5B4%5D=on&_dispColumnsList%5B7%5D=on&_dispColumnsList%5B8%5D=on&_dispColumnsList%5B9%5D=on&_dispColumnsList%5B10%5D=on&_dispColumnsList%5B11%5D=on&_dispColumnsList%5B12%5D=on&_dispColumnsList%5B13%5D=on&_dispColumnsList%5B14%5D=on&_dispColumnsList%5B15%5D=on&_dispColumnsList%5B16%5D=on&_dispColumnsList%5B17%5D=on&_dispColumnsList%5B18%5D=on&effectValue=&infoindicationsorefficacy=&infoindicationsorefficacyHowtoSearch=and&warnings=&warningsHowtoSearch=and&contraindicationsAvoidedadministration=&contraindicationsAvoidedadministrationHowtoSearch=and&contraindicatedcombinationPrecautionsforcombination=&contraindicatedcombinationPrecautionsforcombinationHowtoSearch=and&updateDocFrDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&updateDocToDt=%E5%B9%B4%E6%9C%88%E6%97%A5+%5BYYYYMMDD%5D&compNameWord=&iyakuKoumokuSelectSwitchRadio=2&isNewReleaseDisp=true&koumoku1Value=&koumoku1Word=&koumoku1HowtoSearch=and&koumoku2Value=&koumoku2Word=&koumoku2HowtoSearch=and&koumoku3Value=&koumoku3Word=&koumoku3HowtoSearch=and ' + getTargetDocsParam() + '&gs1code=&howtoRdSearchSel=or&relationDoc1Sel=&relationDoc1check1=on&_relationDoc1check1=on&relationDoc1check2=on&_relationDoc1check2=on&relationDoc1Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc1HowtoSearch=and&relationDoc1FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc1ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween12=and&relationDoc2Sel=&relationDoc2check1=on&_relationDoc2check1=on&relationDoc2check2=on&_relationDoc2check2=on&relationDoc2Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc2HowtoSearch=and&relationDoc2FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc2ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDocHowtoSearchBetween23=and&relationDoc3Sel=&relationDoc3check1=on&_relationDoc3check1=on&relationDoc3check2=on&_relationDoc3check2=on&relationDoc3Word=%E6%A4%9C%E7%B4%A2%E8%AA%9E%E3%82%92%E5%85%A5%E5%8A%9B&relationDoc3HowtoSearch=and&relationDoc3FrDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&relationDoc3ToDt=%E5%B9%B4%E6%9C%88+%5BYYYYMM%5D&ListRows=' + document.getElementById("ListRows").value + '&btnA.x=68&btnA.y=12&listCategory=');
 	}
 }
 
@@ -677,4 +678,3 @@ tooltipClose = function() {}
 </script>
 
 </body></html>
-
