@@ -1,1 +1,3 @@
-# PMDAiyakuSearch
+# PMDAの医療用医薬品を検索するツールです。
+
+htaファイルを実行してください。
